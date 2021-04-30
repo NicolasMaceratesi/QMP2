@@ -1,0 +1,139 @@
+class Usuario {
+    list<Prenda> guardarropas = new ArrayList<Prenda>;
+    void agregarPrenda(Prenda prenda){
+
+		this.guardarropas.add(prenda);
+	
+	//la validacion para meter una prenda valida en teoria ya esta hecha, ya que en el constructor
+	//de la prenda se verifica su validez, y el tema de los tipos, al no venir de afuera y ser cargados
+	//por nosotros, no hace falta validarlo
+	}
+
+	Prenda tirar(Prenda prenda){
+		this.guardarropas.remove(prenda);
+	}
+}
+
+class Prenda{
+		
+	TipoPrenda tipo;
+	Material material;
+	Color colorPrincipal;
+	Color colorSecundario = NULL;
+	
+	public Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrincipal){
+		
+		this.tipo = requireNonNull(tipo, "Falta el tipo!");
+		this.material = requireNonNull(material, "Falta el material!");
+		this.colorPrincipal = requireNonNull(colorPrincipal, "Falta el color principal!");
+
+		if(trama != null){
+		this.material.setTrama(trama);
+		}
+
+	//para el borrador de la prenda que empece a cargar quizas implementar un patron de prototype?
+	}
+
+	public Categoria catgoriaPrenda(){
+		
+		return tipo.getCategoria();
+	}
+
+	public setterColorSecundario(Color colorSecundario){
+		
+		this.colorSecundario = colorSecundario;
+	}
+}
+
+
+class TipoPrenda{
+
+	Categoria categoria;
+	
+	puiblic TipoPrenda(Categoria categoria){
+		this.categoria = categoria
+		
+	}
+
+	public Categoria getCategoria(){
+			
+		return this.categoria;
+	}
+}
+
+//Prendas inferiores
+TipoPrenda pantalon = new TipoPrenda(INFERIOR);
+//Prendas superiores
+TipoPrenda camisa = new TipoPrenda(SUPERIOR);
+
+public enum Categoria{
+
+	SUPERIOR,
+	INFERIOR,
+	CALZADO,
+	ACCESORIOS
+}
+
+class Color{
+
+	int valorRojo;
+	int  valorVerde;
+	int valorAzul;
+
+	public Color(int valorRojo, int valorVerde, int valorAzul){
+		
+		this.valorRojo;
+		this.valorVerde;
+		this.valorAzul;
+	}  	
+}
+
+public enum Material{
+
+	LANA,
+	SEDA,
+	ALGODON,
+	POLIESTER
+
+	//un material tiene una trama
+	private Trama trama = LISA;
+
+	Material(Trama trama){
+	
+	this.trama = trama;
+	}
+
+	public getTrama(){
+
+	retun this.trama;
+	}
+
+	public setTrama(Trama trama){
+	
+	this.trama = trama;
+	}
+}
+
+public enum Trama{
+
+	LISA,
+	RAYADA,
+	LUNARES,
+	CUADROS,
+	ESTAMPADO
+}
+
+//BONUS
+
+public enum UniformesPorColegio{
+
+	COLEGIO_SAN_JUAN,
+	INSTITUTO_JOHNSON
+	
+	private List<Prenda> uniforme;
+	
+	Material(List<Prenda> uniforme){
+	
+	this.uniforme = uniforme;
+	}
+} 
